@@ -17,7 +17,7 @@ class StockPrice
         $this->alphaVantage = $alphaVantage;
     }
 
-    public function handle(string $symbol)
+    public function handle(string $symbol): array
     {
         $this->alphaVantage->setParams([
             'function' => 'GLOBAL_QUOTE',
@@ -26,6 +26,9 @@ class StockPrice
 
         $response = $this->alphaVantage->getResponse();
 
-        return (new StockPriceTransformer)->transform($response);
+        if (isset($response->{"Global Quote"}->{'01. symbol'}))
+            return (new StockPriceTransformer)->transform($response);
+
+        return [];
     }
 }
