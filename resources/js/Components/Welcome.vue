@@ -20,7 +20,6 @@ let submit = () => {
             </div>
 
             <div class="mt-6 text-gray-500">
-
                 <form @submit.prevent="submit">
                     <div class="col-span-6 sm:col-span-3">
                         <label for="stock-symbol" class="block text-sm font-medium text-gray-700">
@@ -29,6 +28,12 @@ let submit = () => {
                                autocomplete="given-name"
                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                required/>
+                    </div>
+
+                    <div v-if="$page.props.flash.error" class="rounded-md bg-red-50 p-4 mt-4">
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-red-800">{{ $page.props.flash.error }}</h3>
+                        </div>
                     </div>
 
                     <div class="py-3">

@@ -21,6 +21,12 @@ class StockPrice extends Controller
         $symbol = $request->symbol;
         $stock_quote = StockQuote::run($symbol);
 
+        if (!$stock_quote) {
+            return back()->with([
+                'error' => "Stock quote not found!"
+            ]);
+        }
+
         $stock_price = CreateNewStockPrice::run($stock_quote);
 
         return redirect()->route('stock_quote.show', ['symbol' => $stock_price->symbol]);
