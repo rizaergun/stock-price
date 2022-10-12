@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use \App\Http\Controllers\StockPrice;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::post('/stock-price', [StockPrice::class, '__invoke']);
+
+    Route::get('/stock-quote/{symbol}', [StockPrice::class, 'show'])
+        ->name('stock_quote.show');
 });

@@ -6,7 +6,7 @@ use App\Transformers\StockPriceTransformer;
 use Lorisleiva\Actions\Concerns\AsAction;
 use App\Services\AlphaVantage;
 
-class StockPrice
+class StockQuote
 {
     use AsAction;
 
